@@ -1,0 +1,29 @@
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Personal and build files
+.zen/
+__pycache__/
+*.py[cod]
+*.log
+*.sqlite3
+
+# Dependency/build artifacts
+*.egg-info/
+dist/
+build/
+
+# Environment and configuration
+.env
+*.lock
+uv.lock
+
+# IDE and editor configs
+.vscode/
+.idea/
+
+# Data or cache directories
+mongo_data/
+.cache/
