@@ -1,0 +1,18 @@
+[project]
+name = "sokhan"
+version = "0.1.0"
+description = "Talk in the way you love!"
+requires-python = ">=3.11"
+dependencies = [
+    "bs4>=0.0.2",
+    "gitpython>=3.1.46",
+    "html2text>=2025.4.15",
+    "langchain-community>=0.4.1",
+    "loguru>=0.7.3",
+    "pip>=25.3",
+    "pycurl>=7.45.7",
+    "pydantic>=2.6",
+    "pymongo>=4.16.0",
+    "tqdm>=4.67.1",
+    "zenml>=0.93.2",
+]

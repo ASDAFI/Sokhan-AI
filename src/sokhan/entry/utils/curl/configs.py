@@ -1,0 +1,7 @@
+import os
+
+MAX_FETCH_SIZE = int(2 ** 36)
+FETCH_CONNECTION_TIMEOUT = int(os.getenv("FETCH_CONNECTION_TIMEOUT", 60 * 10))
+FETCH_TIMEOUT = int(os.getenv("FETCH_TIMEOUT", 60 * 60 * 4))
+FETCH_RETRY_DELAY = int(os.getenv("FETCH_RETRY_DELAY", 2))
+FETCH_RETRY_COUNT = int(os.getenv("FETCH_RETRY_COUNT", 5))

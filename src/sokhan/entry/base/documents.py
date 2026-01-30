@@ -1,0 +1,53 @@
+from datetime import datetime, timezone
+from typing import TypeVar, Generic
+from abc import ABC, abstractmethod
+import uuid
+
+from pydantic import BaseModel, UUID4, Field, AnyUrl
+
+
+T = TypeVar("T", bound="Document")
+
+
+
+class Document(BaseModel, Generic[T], ABC):
+    id: UUID4 = Field(default_factory=uuid.uuid4)
+
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Document):
+            return False
+        return self._id == other._id
+
+    def __hash__(self) -> int:
+        return hash(self.id)
+
+    @property
+    @abstractmethod
+    def collection_name(self):
+        pass
+
+    @classmethod
+    def from_dict(cls, data: dict) -> T:
+        return cls(**data)
+
+    @staticmethod
+    def fix_data_types(data: dict) -> dict:
+        out = {}
+        for key, value in data.items():
+            if isinstance(value, AnyUrl):
+                out[key] = str(value)
+            elif isinstance(value, uuid.UUID):
+                out[key] = str(value)
+            else:
+                out[key] = value
+        return out
+
+    def to_mongo_dict(self) -> dict:
+        data = self.model_dump()
+        data = self.fix_data_types(data)
+
+        data["_id"] = str(data["id"])
+        data.pop("_id")
+
+        return data
