@@ -2,8 +2,8 @@ from langchain_community.document_loaders import AsyncHtmlLoader
 from langchain_community.document_transformers.html2text import Html2TextTransformer
 from pydantic import AnyUrl
 
-from sokhan.entry.base.crawlers import BaseCrawler
-from sokhan.entry.custom.documents import CustomArticleDocument
+from sokhan.data_entry.base.crawlers import BaseCrawler
+from sokhan.data_entry.custom.documents import CustomArticleDocument
 
 
 class CustomArticleCrawler(BaseCrawler):

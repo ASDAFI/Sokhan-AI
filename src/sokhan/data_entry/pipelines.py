@@ -4,9 +4,9 @@ from typing import Annotated
 from zenml import get_step_context, step, pipeline
 
 from sokhan.db.mongo_client import MongoDBClient
-from sokhan.entry.base.documents import Document
-from sokhan.entry.crawlers import CrawlerDispatcher, ProfileCrawlerDispatcher
-from sokhan.entry.utils.general import get_domain
+from sokhan.data_entry.base.documents import Document
+from sokhan.data_entry.crawlers import CrawlerDispatcher, ProfileCrawlerDispatcher
+from sokhan.data_entry.utils.general import get_domain
 
 
 @step

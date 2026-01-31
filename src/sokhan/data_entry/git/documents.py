@@ -2,7 +2,7 @@ from typing import Annotated
 
 from pydantic import AnyUrl, Field
 
-from sokhan.entry.base.documents import Document
+from sokhan.data_entry.base.documents import Document
 
 
 

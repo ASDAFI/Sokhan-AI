@@ -3,7 +3,7 @@ import re
 from langchain_community.document_loaders import AsyncHtmlLoader
 from pydantic import AnyUrl
 
-from sokhan.entry.base.crawlers import BaseProfileCrawler
+from sokhan.data_entry.base.crawlers import BaseProfileCrawler
 
 
 class VirgoolProfileCrawler(BaseProfileCrawler):

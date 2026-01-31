@@ -2,7 +2,7 @@ from collections import defaultdict
 
 import pymongo
 
-from sokhan.entry.base.documents import Document
+from sokhan.data_entry.base.documents import Document
 
 
 class MongoDBClient:

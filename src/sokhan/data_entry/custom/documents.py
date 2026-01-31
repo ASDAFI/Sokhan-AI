@@ -1,6 +1,6 @@
 from pydantic import AnyUrl
 
-from sokhan.entry.base.documents import Document
+from sokhan.data_entry.base.documents import Document
 
 class CustomArticleDocument(Document):
     url: AnyUrl

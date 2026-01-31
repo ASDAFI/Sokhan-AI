@@ -1,8 +1,8 @@
-from sokhan.entry.base.crawlers import BaseCrawler, BaseProfileCrawler
-from sokhan.entry.custom.crawlers import CustomArticleCrawler, CustomProfileCrawler
-from sokhan.entry.git.crawlers import GitCrawler
-from sokhan.entry.dispatcher import BaseDispatcher
-from sokhan.entry.virgool.crawlers import VirgoolProfileCrawler
+from sokhan.data_entry.base.crawlers import BaseCrawler, BaseProfileCrawler
+from sokhan.data_entry.custom.crawlers import CustomArticleCrawler, CustomProfileCrawler
+from sokhan.data_entry.git.crawlers import GitCrawler
+from sokhan.data_entry.dispatcher import BaseDispatcher
+from sokhan.data_entry.virgool.crawlers import VirgoolProfileCrawler
 
 
 class CrawlerDispatcher(BaseDispatcher[BaseCrawler]):

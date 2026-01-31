@@ -4,7 +4,7 @@ from typing import Type, TypeVar, Generic
 from pydantic import AnyUrl
 from loguru import logger
 
-from sokhan.entry.utils.general import get_domain
+from sokhan.data_entry.utils.general import get_domain
 
 T = TypeVar('T')
 TCrawler = TypeVar('TCrawler')

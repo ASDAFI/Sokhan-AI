@@ -6,8 +6,8 @@ from functools import wraps
 
 import pycurl
 
-from sokhan.entry.utils.curl.configs import *
-from sokhan.entry.utils.curl.exceptions import *
+from sokhan.data_entry.utils.curl.configs import *
+from sokhan.data_entry.utils.curl.exceptions import *
 
 
 

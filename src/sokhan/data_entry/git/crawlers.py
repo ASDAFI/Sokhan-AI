@@ -6,8 +6,8 @@ import git
 from pydantic import AnyUrl
 from loguru import logger
 
-from sokhan.entry.git.documents import GitRepositoryDocument
-from sokhan.entry.base.crawlers import BaseCrawler
+from sokhan.data_entry.git.documents import GitRepositoryDocument
+from sokhan.data_entry.base.crawlers import BaseCrawler
 
 
 def is_ignore(filename: str, ignores: list[str]) -> bool:
