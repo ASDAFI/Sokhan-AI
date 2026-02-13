@@ -4,10 +4,9 @@ from pydantic import AnyUrl, Field
 
 from sokhan.data_entry.base.documents import Document
 
-
-
 FilePath = Annotated[str, "filesystem path"]
 CodeContent = Annotated[str, "code content"]
+
 
 class GitRepositoryDocument(Document):
     path_map_content: dict[FilePath, CodeContent] = Field(default_factory=dict)
@@ -17,4 +16,3 @@ class GitRepositoryDocument(Document):
     @property
     def collection_name(self):
         return "repository"
-
