@@ -1,23 +1,23 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import TypeVar, Generic
 from abc import ABC, abstractmethod
 import uuid
 
 from pydantic import BaseModel, UUID4, Field, AnyUrl
 
+from sokhan.utils.db.mongo_client import MONGO_CLIENT
 
 T = TypeVar("T", bound="Document")
 
 
-
 class Document(BaseModel, Generic[T], ABC):
     id: UUID4 = Field(default_factory=uuid.uuid4)
-
+    created_date: datetime = Field(default_factory=datetime.now)
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Document):
             return False
-        return self._id == other._id
+        return self.id == other.id
 
     def __hash__(self) -> int:
         return hash(self.id)
@@ -39,6 +39,8 @@ class Document(BaseModel, Generic[T], ABC):
                 out[key] = str(value)
             elif isinstance(value, uuid.UUID):
                 out[key] = str(value)
+            elif isinstance(value, datetime):
+                out[key] = value.isoformat()
             else:
                 out[key] = value
         return out
@@ -48,6 +50,11 @@ class Document(BaseModel, Generic[T], ABC):
         data = self.fix_data_types(data)
 
         data["_id"] = str(data["id"])
-        data.pop("_id")
+
+        if "id" in data:
+            data.pop("id")
 
         return data
+
+    def save(self):
+        MONGO_CLIENT.bulk_insert(self.collection_name, [self.to_mongo_dict()])

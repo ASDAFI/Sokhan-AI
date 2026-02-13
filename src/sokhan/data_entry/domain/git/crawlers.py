@@ -6,7 +6,7 @@ import git
 from pydantic import AnyUrl
 from loguru import logger
 
-from sokhan.data_entry.git.documents import GitRepositoryDocument
+from sokhan.data_entry.domain.git.documents import GitRepositoryDocument
 from sokhan.data_entry.base.crawlers import BaseCrawler
 
 
@@ -17,12 +17,14 @@ def is_ignore(filename: str, ignores: list[str]) -> bool:
                 return True
     return False
 
+
 def read_content(filename: str) -> str:
     with open(filename, "r") as f:
         return f.read()
 
+
 class GitCrawler(BaseCrawler):
-    def extract(self, url: AnyUrl, ignore=[".git", ".toml", ".lock", ".png", ".jpg"]) -> GitRepositoryDocument:
+    def extract(self, url: AnyUrl) -> GitRepositoryDocument:
         local_tmp = tempfile.mkdtemp()
 
         try:
@@ -51,3 +53,11 @@ class GitCrawler(BaseCrawler):
             shutil.rmtree(local_tmp)
 
         return doc
+
+    def extract_urls(self, urls: list[AnyUrl], ignore=[".git", ".toml", ".lock", ".png", ".jpg"]) -> list[
+        GitRepositoryDocument]:
+        out = []
+        for url in urls:
+            doc = self.extract(url)
+            out.append(doc)
+        return out

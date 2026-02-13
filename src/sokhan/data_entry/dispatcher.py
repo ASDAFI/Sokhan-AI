@@ -4,7 +4,7 @@ from typing import Type, TypeVar, Generic
 from pydantic import AnyUrl
 from loguru import logger
 
-from sokhan.data_entry.utils.general import get_domain
+from sokhan.utils.general import get_domain
 
 T = TypeVar('T')
 TCrawler = TypeVar('TCrawler')
@@ -19,7 +19,7 @@ class DispatcherBuilder(Generic[T]):
     def register(self, domain: AnyUrl, crawler: Type[T]) -> "DispatcherBuilder[T]":
         """Register a crawler for a specific domain pattern."""
         domain_str = get_domain(domain)
-        pattern = r"https://(www\.)?{}/*".format(re.escape(domain_str))
+        pattern = r"https://(www\.)?{}/*".format(re.escape(domain_str))  # TODO: Enhance Pattern
         self._patterns.append((pattern, crawler))
         return self
 
@@ -56,4 +56,3 @@ class BaseDispatcher(Generic[T]):
     def builder(cls) -> DispatcherBuilder[T]:
         """Create a builder for configuring the dispatcher."""
         return DispatcherBuilder[T]()
-
